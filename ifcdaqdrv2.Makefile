@@ -5,13 +5,13 @@ include $(REQUIRE_TOOLS)/driver.makefile
 
 APP:=ifcdaqdrv2
 APPSRC:=src
-APPINC:=include	
+APPINC:=include
 
-# WHY $(APPINC) DONT WORK???
-USR_INCLUDES += -Iinclude
+USR_INCLUDES += -I$(APPINC)
 
-SOURCES = $(wildcard src/*.c)
-HEADERS = $(wildcard include/*.h)
+SOURCES = $(wildcard $(APPSRC)/*.c)
+HEADERS = $(wildcard $(APPSRC)/*.h)
+HEADERS = $(wildcard $(APPINC)/*.h)
 
 # Enable debug, disabled by default.
 HOST_OPT = YES
