@@ -1,4 +1,4 @@
 [submodule "ifcdaqdrv2"]
 	path = ifcdaqdrv2
-	url = https://bitbucket.org/europeanspallationsource/tosca_ifcdaqdrv2
+	url = git@bitbucket.org:europeanspallationsource/tosca_ifcdaqdrv2.git
 	ignore = all
