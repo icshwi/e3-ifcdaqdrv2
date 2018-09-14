@@ -26,6 +26,13 @@
 where_am_I := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 
 include $(E3_REQUIRE_TOOLS)/driver.makefile
+include $(where_am_I)/../configure/DECOUPLE_FLAGS
+
+
+ifneq ($(strip $(TSCLIB_DEP_VERSION)),)
+tsclib_VERSION=$(TSCLIB_DEP_VERSION)
+endif
+
 
 APP:=ifcdaqdrv2
 APP2:=ifcdaqdrv2App
