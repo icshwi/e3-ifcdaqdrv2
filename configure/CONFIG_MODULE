@@ -2,7 +2,9 @@ EPICS_MODULE_NAME:=ifcdaqdrv2
 #
 EPICS_MODULE_TAG:=v3.0.2
 #
-E3_MODULE_VERSION:=3.0.2
+# Dependency version 1 (d1), because of TSCLIB 3.0.0
+# 3.0.2 : TSCLIB 2.3.1
+E3_MODULE_VERSION:=3.0.2d1
 #
 TSCLIB_DEP_VERSION=3.0.0
 #
