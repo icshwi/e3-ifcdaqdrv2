@@ -17,8 +17,8 @@
 # 
 # Author  : Joao Paulo Martins
 # email   : joaopaulomartins@esss.se
-# Date    : 2018-04-17
-# version : 0.0.1 
+# Date    : 2019-09-26
+# version : 0.0.2 
 #
 # ifcdaqdrv2 repository follows EPICS standard structure
 # 
@@ -33,11 +33,14 @@ ifneq ($(strip $(TSCLIB_DEP_VERSION)),)
 tsclib_VERSION=$(TSCLIB_DEP_VERSION)
 endif
 
+ifeq ($(E3_MODULE_VERSION),3.0.4)
+	APP:=ifcdaqdrv2App
+else
+	APP:=ifcdaqdrvApp
+endif
 
-APP:=ifcdaqdrv2
-APP2:=ifcdaqdrv2App
-APPDB:=$(APP2)/Db
-APPSRC:=$(APP2)/src
+APPDB:=$(APP)/Db
+APPSRC:=$(APP)/src
 
 
 USR_INCLUDES += -I$(where_am_I)$(APPSRC)
@@ -51,15 +54,16 @@ USR_INCLUDES += -I$(where_am_I)$(APPSRC)
 # USR_CPPFLAGS += -Wno-unused-function
 # USR_CPPFLAGS += -Wno-unused-but-set-variable
 
-TEMPLATES += $(wildcard $(APPDB)/FIM*.template)
-TEMPLATES += $(wildcard $(APPDB)/restore*.template)
 
-HEADERS = $(APPSRC)/ifcdaqdrv2.h
+ifeq ($(E3_MODULE_VERSION),3.0.4)
+	HEADERS = $(APPSRC)/ifcdaqdrv2.h
+else
+	HEADERS = $(APPSRC)/ifcdaqdrv.h
+endif
 HEADERS += $(APPSRC)/ifcfastintdrv2.h
 
 SOURCES += $(APPSRC)/debugEpics.c
 SOURCES += $(APPSRC)/ifcdaqdrv.c
-SOURCES += $(APPSRC)/ifcdaqdrv_acq420.c
 SOURCES += $(APPSRC)/ifcdaqdrv_adc3110.c
 SOURCES += $(APPSRC)/ifcdaqdrv_adc3112.c
 SOURCES += $(APPSRC)/ifcdaqdrv_adc3117.c
@@ -70,8 +74,14 @@ SOURCES += $(APPSRC)/ifcdaqdrv_utils.c
 SOURCES += $(APPSRC)/ifcfastintdrv.c
 SOURCES += $(APPSRC)/ifcfastintdrv_utils.c
 
-
-
+ifeq ($(E3_MODULE_VERSION),3.0.4)
+	SOURCES += $(APPSRC)/ifcdaqdrv_acq420.c
+else
+	SOURCES += $(APPSRC)/ifcdaqdrv_scope_lite.c
+	SOURCES += $(APPSRC)/ifcdaqdrv_gen_scope.c
+	SOURCES += $(APPSRC)/ifcdaqdrv_scope4ch.c
+	SOURCES += $(APPSRC)/ifcdaqdrv_scope20ch.c
+endif
 
 # db rule is the default in RULES_E3, so add the empty one
 
