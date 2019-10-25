@@ -1,5 +1,14 @@
-# e3-ifcdaqdrv2
+e3-ifcdaqdrv2
+====
 IFCDAQDRV2 is the library that implements an API to access IOxOS MTCA cards using TSC driver
+
+
+## Dependency Plot
+
+|![ifcdaqdrv2a dep](docs/ifcdaqdrv2.png)|
+| :---: |
+|**Figure 1** Depdendency Tree. |
+
 
 
 ## ESS bitbucket account is need

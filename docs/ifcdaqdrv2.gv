@@ -1,0 +1,9 @@
+digraph ifcdaqdrv2 {
+node [shape=record];
+base [label="base 7.0.3"]
+require [label="require 3.1.2"]
+TSCLIB [label="TSCLIB 4.0.0"]
+ifcdaqdrv2 [label="ifcdaqdrv2 4.0.0-beta"]
+base -> require -> { TSCLIB } ->  {  ifcdaqdrv2  } 
+} 
+
